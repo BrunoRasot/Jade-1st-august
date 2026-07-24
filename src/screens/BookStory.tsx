@@ -1,30 +1,30 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-// Párrafos con tus 10 GIFs de Tenor convertidos a enlaces directos y distribuidos a los costados
+// Párrafos con tus 10 ositos locales distribuidos a los costados
 const letterContent = [
   { text: "Hay personas que llegan a la vida de uno de una forma tan inesperada que, cuando te das cuenta de todo lo que significan, ya es demasiado tarde para fingir que son alguien más.", bear: null, position: null },
-  { text: "Tú fuiste una de esas personas.", bear: "https://media.tenor.com/C539LgZ39sYAAAAi/help.gif", position: "left" },
+  { text: "Tú fuiste una de esas personas.", bear: "/bear-1.gif", position: "left" },
   { text: "Nunca imaginé que una conversación pudiera convertirse en tantas sonrisas, que unas llamadas terminarían siendo parte de mis días o que alguien pudiera hacerme sentir tan tranquilo simplemente por estar ahí.", bear: null, position: null },
-  { text: "Poco a poco te fuiste convirtiendo en alguien importante para mí, sin prisas, sin darme cuenta, simplemente sucedió.", bear: "https://media.tenor.com/L1Nl6L8V22YAAAAi/milk-and-mocha-kiss-cheek.gif", position: "right" },
+  { text: "Poco a poco te fuiste convirtiendo en alguien importante para mí, sin prisas, sin darme cuenta, simplemente sucedió.", bear: "/bear-2.gif", position: "right" },
   { text: "Conocerte ha sido una de esas casualidades que agradezco profundamente. Porque detrás de cada charla encontré a una mujer fuerte, divertida, inteligente, noble y con un corazón que vale muchísimo.", bear: null, position: null },
-  { text: "Una persona que me enseñó que las conexiones más bonitas nacen cuando uno es simplemente uno mismo.", bear: "https://media.tenor.com/s6W2aW2Y22YAAAAi/abra%C3%A7ourso.gif", position: "left" },
+  { text: "Una persona que me enseñó que las conexiones más bonitas nacen cuando uno es simplemente uno mismo.", bear: "/bear-3.gif", position: "left" },
   { text: "Cuando por fin pude verte en persona entendí que había recuerdos que jamás iba a olvidar. No fue un momento perfecto porque todo fuera de película, sino porque fue real.", bear: null, position: null },
-  { text: "Porque estabas tú. Y eso bastó para que ese día encontrara un lugar especial en mi memoria.", bear: "https://media.tenor.com/W2Y22L1Nl6L8V22YAAAAi/milk-mocha-bear-falling.gif", position: "right" },
+  { text: "Porque estabas tú. Y eso bastó para que ese día encontrara un lugar especial en mi memoria.", bear: "/bear-4.gif", position: "right" },
   { text: "Con el tiempo también entendí algo muy importante: querer a alguien no significa apresurar sus tiempos. Todos llevamos procesos diferentes, heridas distintas y momentos en los que necesitamos pensar más en nosotros mismos antes de abrirle completamente la puerta a alguien más.", bear: null, position: null },
-  { text: "Y quiero que sepas que lo entiendo.", bear: "https://media.tenor.com/8V22Y22L1Nl6L8V22YAAAAi/milk-bear.gif", position: "left" },
+  { text: "Y quiero que sepas que lo entiendo.", bear: "/bear-5.gif", position: "left" },
   { text: "Sería mentira decir que no me gustaría que algún día fueras una persona aún más cercana en mi vida. Claro que me gustaría. Me hace ilusión imaginar lo bonito que podría ser compartir más momentos contigo, construir recuerdos nuevos y poder llamarte mi compañera.", bear: null, position: null },
-  { text: "No es un secreto; es un deseo sincero que nace de todo lo bueno que veo en ti.", bear: "https://media.tenor.com/22Y22L1Nl6L8V22YAAAAi/milk-mocha-bear.gif", position: "right" },
+  { text: "No es un secreto; es un deseo sincero que nace de todo lo bueno que veo en ti.", bear: "/bear-6.gif", position: "right" },
   { text: "Pero también sería injusto pedirte que corras cuando tu corazón necesita caminar.", bear: null, position: null },
-  { text: "Por eso no quiero que este detalle sea una presión ni una manera de convencerte de algo. Quiero que sea exactamente lo contrario: un recordatorio de que eres una persona muy especial para mí, independientemente del nombre que tenga lo nuestro hoy.", bear: "https://media.tenor.com/L22Y22L1Nl6L8V22YAAAAi/love.gif", position: "left" },
+  { text: "Por eso no quiero que este detalle sea una presión ni una manera de convencerte de algo. Quiero que sea exactamente lo contrario: un recordatorio de que eres una persona muy especial para mí, independientemente del nombre que tenga lo nuestro hoy.", bear: "/bear-7.gif", position: "left" },
   { text: "Si algún día nuestros caminos vuelven a encontrarse en el mismo momento, seré muy feliz. Y si para que eso ocurra hace falta tiempo, entonces dejaré que el tiempo haga su trabajo.", bear: null, position: null },
-  { text: "Mientras tanto, seguiré disfrutando de conocerte, de hablar contigo, de reír contigo y de valorar cada instante que compartimos.", bear: "https://media.tenor.com/Nl6L8V22Y22YAAAAi/milk-and-mocha.gif", position: "right" },
+  { text: "Mientras tanto, seguiré disfrutando de conocerte, de hablar contigo, de reír contigo y de valorar cada instante que compartimos.", bear: "/bear-8.gif", position: "right" },
   { text: "Porque las mejores historias no siempre empiezan con un \"sí\" inmediato; algunas comienzan con paciencia, respeto y la decisión de cuidar lo que se siente.", bear: null, position: null },
-  { text: "Hoy no te escribo porque seas mi novia.", bear: "https://media.tenor.com/2Y22L1Nl6L8V22YAAAAi/kiss.gif", position: "left" },
+  { text: "Hoy no te escribo porque seas mi novia.", bear: "/bear-9.gif", position: "left" },
   { text: "Te escribo porque eres la mujer que ocupa un lugar muy especial en mi corazón.", bear: null, position: null },
   { text: "Y porque, aunque todavía no pueda llamarte así, me hace ilusión pensar que quizá algún día la vida nos regale esa oportunidad.", bear: null, position: null },
   { text: "Hasta entonces, no quiero prometerte una espera infinita ni hacerte sentir responsable de mis sentimientos.", bear: null, position: null },
-  { text: "Solo quiero que sepas que aquí hay alguien que te aprecia de verdad, que cree en ti y que, mientras ambos sigamos eligiendo compartir este camino, estará feliz de seguir conociéndote.", bear: "https://media.tenor.com/L1Nl6L8V22Y22YAAAAi/mocha-bear-hearts.gif", position: "right" },
+  { text: "Solo quiero que sepas que aquí hay alguien que te aprecia de verdad, que cree en ti y que, mientras ambos sigamos eligiendo compartir este camino, estará feliz de seguir conociéndote.", bear: "/bear-10.gif", position: "right" },
   { text: "Gracias por aparecer en mi vida.", bear: null, position: null },
   { text: "Y gracias por ser tú.", bear: null, position: null }
 ];
@@ -153,7 +153,7 @@ export const BookStory = () => {
       >
         <div className="bg-white/5 p-4 rounded-[2rem] backdrop-blur-sm border border-white/10 mb-8 shadow-2xl">
           <img 
-            src="https://media.tenor.com/L1Nl6L8V22YAAAAi/milk-and-mocha-kiss-cheek.gif" 
+            src="/bear-10.gif" 
             alt="Milk y Mocha final" 
             className="w-32 h-32 object-contain"
           />
