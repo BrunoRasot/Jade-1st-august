@@ -1,44 +1,44 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-const letterParagraphs = [
-  "Hay personas que llegan a la vida de uno de una forma tan inesperada que, cuando te das cuenta de todo lo que significan, ya es demasiado tarde para fingir que son alguien más.",
-  "Tú fuiste una de esas personas.",
-  "Nunca imaginé que una conversación pudiera convertirse en tantas sonrisas, que unas llamadas terminarían siendo parte de mis días o que alguien pudiera hacerme sentir tan tranquilo simplemente por estar ahí.",
-  "Poco a poco te fuiste convirtiendo en alguien importante para mí, sin prisas, sin darme cuenta, simplemente sucedió.",
-  "Conocerte ha sido una de esas casualidades que agradezco profundamente. Porque detrás de cada charla encontré a una mujer fuerte, divertida, inteligente, noble y con un corazón que vale muchísimo.",
-  "Una persona que me enseñó que las conexiones más bonitas nacen cuando uno es simplemente uno mismo.",
-  "Cuando por fin pude verte en persona entendí que había recuerdos que jamás iba a olvidar. No fue un momento perfecto porque todo fuera de película, sino porque fue real.",
-  "Porque estabas tú. Y eso bastó para que ese día encontrara un lugar especial en mi memoria.",
-  "Con el tiempo también entendí algo muy importante: querer a alguien no significa apresurar sus tiempos. Todos llevamos procesos diferentes, heridas distintas y momentos en los que necesitamos pensar más en nosotros mismos antes de abrirle completamente la puerta a alguien más.",
-  "Y quiero que sepas que lo entiendo.",
-  "Sería mentira decir que no me gustaría que algún día fueras mi novia. Claro que me gustaría. Me hace ilusión imaginar lo bonito que podría ser compartir más momentos contigo, construir recuerdos nuevos y poder llamarte mi compañera.",
-  "No es un secreto; es un deseo sincero que nace de todo lo bueno que veo en ti.",
-  "Pero también sería injusto pedirte que corras cuando tu corazón necesita caminar.",
-  "Por eso no quiero que este detalle sea una presión ni una manera de convencerte de algo. Quiero que sea exactamente lo contrario: un recordatorio de que eres una persona muy especial para mí, independientemente del nombre que tenga lo nuestro hoy.",
-  "Si algún día nuestros caminos vuelven a encontrarse en el mismo momento, seré muy feliz. Y si para que eso ocurra hace falta tiempo, entonces dejaré que el tiempo haga su trabajo.",
-  "Mientras tanto, seguiré disfrutando de conocerte, de hablar contigo, de reír contigo y de valorar cada instante que compartimos.",
-  "Porque las mejores historias no siempre empiezan con un \"sí\" inmediato; algunas comienzan con paciencia, respeto y la decisión de cuidar lo que se siente.",
-  "Hoy no te escribo porque seas mi novia.",
-  "Te escribo porque eres la mujer que ocupa un lugar muy especial en mi corazón.",
-  "Y porque, aunque todavía no pueda llamarte así, me hace ilusión pensar que quizá algún día la vida nos regale esa oportunidad.",
-  "Hasta entonces, no quiero prometerte una espera infinita ni hacerte sentir responsable de mis sentimientos.",
-  "Solo quiero que sepas que aquí hay alguien que te aprecia de verdad, que cree en ti y que, mientras ambos sigamos eligiendo compartir este camino, estará feliz de seguir conociéndote.",
-  "Gracias por aparecer en mi vida.",
-  "Y gracias por ser tú."
+// Definimos los párrafos y en cuáles queremos que aparezca un osito especial (indicando el índice y el link del GIF)
+const letterContent = [
+  { text: "Hay personas que llegan a la vida de uno de una forma tan inesperada que, cuando te das cuenta de todo lo que significan, ya es demasiado tarde para fingir que son alguien más.", bear: null },
+  { text: "Tú fuiste una de esas personas.", bear: null },
+  { text: "Nunca imaginé que una conversación pudiera convertirse en tantas sonrisas, que unas llamadas terminarían siendo parte de mis días o que alguien pudiera hacerme sentir tan tranquilo simplemente por estar ahí.", bear: "https://media.tenor.com/D4s6-407jWAAAAAi/milk-and-mocha-bear-phone.gif" }, // Osito con teléfono/conversando
+  { text: "Poco a poco te fuiste convirtiendo en alguien importante para mí, sin prisas, sin darme cuenta, simplemente sucedió.", bear: null },
+  { text: "Conocerte ha sido una de esas casualidades que agradezco profundamente. Porque detrás de cada charla encontré a una mujer fuerte, divertida, inteligente, noble y con un corazón que vale muchísimo.", bear: null },
+  { text: "Una persona que me enseñó que las conexiones más bonitas nacen cuando uno es simplemente uno mismo.", bear: "https://media.tenor.com/2N6m78q_jS8AAAAi/milk-and-mocha.gif" }, // Osito feliz
+  { text: "Cuando por fin pude verte en persona entendí que había recuerdos que jamás iba a olvidar. No fue un momento perfecto porque todo fuera de película, sino porque fue real.", bear: null },
+  { text: "Porque estabas tú. Y eso bastó para que ese día encontrara un lugar especial en mi memoria.", bear: null },
+  { text: "Con el tiempo también entendí algo muy importante: querer a alguien no significa apresurar sus tiempos. Todos llevamos procesos diferentes, heridas distintas y momentos en los que necesitamos pensar más en nosotros mismos antes de abrirle completamente la puerta a alguien más.", bear: null },
+  { text: "Y quiero que sepas que lo entiendo.", bear: "https://media.tenor.com/c6xY-oIuV9UAAAAi/milk-and-mocha-hug.gif" }, // Osito tierno/comprensivo
+  { text: "Sería mentira decir que no me gustaría que algún día fueras mi novia. Claro que me gustaría. Me hace ilusión imaginar lo bonito que podría ser compartir más momentos contigo, construir recuerdos nuevos y poder llamarte mi compañera.", bear: null },
+  { text: "No es un secreto; es un deseo sincero que nace de todo lo bueno que veo en ti.", bear: null },
+  { text: "Pero también sería injusto pedirte que corras cuando tu corazón necesita caminar.", bear: null },
+  { text: "Por eso no quiero que este detalle sea una presión ni una manera de convencerte de algo. Quiero que sea exactamente lo contrario: un recordatorio de que eres una persona muy especial para mí, independientemente del nombre que tenga lo nuestro hoy.", beartype: null },
+  { text: "Si algún día nuestros caminos vuelven a encontrarse en el mismo momento, seré muy feliz. Y si para que eso ocurra hace falta tiempo, entonces dejaré que el tiempo haga su trabajo.", bear: null },
+  { text: "Mientras tanto, seguiré disfrutando de conocerte, de hablar contigo, de reír contigo y de valorar cada instante que compartimos.", bear: null },
+  { text: "Porque las mejores historias no siempre empiezan con un \"sí\" inmediato; algunas comienzan con paciencia, respeto y la decisión de cuidar lo que se siente.", bear: null },
+  { text: "Hoy no te escribo porque seas mi novia.", bear: null },
+  { text: "Te escribo porque eres la mujer que ocupa un lugar muy especial en mi corazón.", bear: null },
+  { text: "Y porque, aunque todavía no pueda llamarte así, me hace ilusión pensar que quizá algún día la vida nos regale esa oportunidad.", beartype: "https://media.tenor.com/mOXZ6-U6V1YAAAAi/milk-and-mocha-bear.gif" }, // Osito enamorado
+  { text: "Hasta entonces, no quiero prometerte una espera infinita ni hacerte sentir responsable de mis sentimientos.", bear: null },
+  { text: "Solo quiero que sepas que aquí hay alguien que te aprecia de verdad, que cree en ti y que, mientras ambos sigamos eligiendo compartir este camino, estará feliz de seguir conociéndote.", bear: null },
+  { text: "Gracias por aparecer en mi vida.", bear: null },
+  { text: "Y gracias por ser tú.", bear: null }
 ];
 
 export const BookStory = () => {
   const easing: [number, number, number, number] = [0.22, 1, 0.36, 1];
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
 
-  // Lógica de deslizamiento automático suave
+  // Auto-scroll suave
   useEffect(() => {
     let animationFrameId: number;
 
     const smoothScroll = () => {
       if (isAutoScrolling) {
-        // Ajusta este número (0.6) para cambiar la velocidad. Mayor = más rápido
         window.scrollBy({ top: 0.6, left: 0, behavior: 'auto' });
         animationFrameId = requestAnimationFrame(smoothScroll);
       }
@@ -53,10 +53,9 @@ export const BookStory = () => {
     };
   }, [isAutoScrolling]);
 
-  // Detener el auto-scroll si el usuario toca la pantalla o hace scroll manual
+  // Detener auto-scroll si el usuario toca o hace scroll
   useEffect(() => {
     const handleUserInteraction = () => setIsAutoScrolling(false);
-    
     window.addEventListener('wheel', handleUserInteraction);
     window.addEventListener('touchstart', handleUserInteraction);
     
@@ -97,31 +96,48 @@ export const BookStory = () => {
         <div className="w-[1px] h-32 bg-gradient-to-b from-white/30 to-transparent mt-16" />
       </motion.div>
 
-      {/* Párrafos */}
+      {/* Párrafos con ositos integrados */}
       <div className="max-w-2xl w-full px-6 flex flex-col">
-        {letterParagraphs.map((paragraph, index) => (
+        {letterContent.map((item, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 60, filter: "blur(12px)" }}
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 2, ease: easing }}
             viewport={{ once: true, margin: "-20%" }}
-            className="min-h-[60vh] flex items-center justify-center w-full"
+            className="min-h-[65vh] flex flex-col items-center justify-center w-full text-center"
           >
+            {/* Si este párrafo tiene un osito asignado, lo mostramos arriba con estilo glassmorphism */}
+            {item.bear && (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.8, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                transition={{ duration: 1.5, delay: 0.2, ease: easing }}
+                viewport={{ once: true }}
+                className="bg-white/5 p-4 rounded-[2rem] backdrop-blur-sm border border-white/10 mb-10 shadow-2xl"
+              >
+                <img 
+                  src={item.bear} 
+                  alt="Milk y Mocha" 
+                  className="w-28 h-28 object-contain"
+                />
+              </motion.div>
+            )}
+
             <p
               className={`font-serif leading-[2.2] tracking-[0.02em] ${
-                paragraph.length < 50 
-                  ? "text-2xl md:text-4xl text-center text-white italic drop-shadow-md" 
+                item.text.length < 50 
+                  ? "text-2xl md:text-4xl text-white italic drop-shadow-md" 
                   : "text-lg md:text-[22px] text-justify text-gray-300 font-light"
               }`}
             >
-              {paragraph}
+              {item.text}
             </p>
           </motion.div>
         ))}
       </div>
 
-      {/* Firma y Ositos */}
+      {/* Firma y Osito final */}
       <motion.div
         initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -129,12 +145,11 @@ export const BookStory = () => {
         viewport={{ once: true, margin: "-20%" }}
         className="min-h-[80vh] flex flex-col items-center justify-center text-center w-full"
       >
-        {/* Contenedor elegante para el GIF importado automáticamente */}
         <div className="bg-white/5 p-4 rounded-[2rem] backdrop-blur-sm border border-white/10 mb-8 shadow-2xl">
           <img 
-            src="https://media.tenor.com/mOXZ6-U6V1YAAAAi/milk-and-mocha-bear.gif" 
-            alt="Milk y Mocha" 
-            className="w-32 h-32 object-contain mix-blend-normal"
+            src="https://media.tenor.com/J8bU9k8c2L0AAAAi/milk-and-mocha-cute.gif" 
+            alt="Milk y Mocha final" 
+            className="w-32 h-32 object-contain"
           />
         </div>
 
