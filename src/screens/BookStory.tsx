@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-// Párrafos con tus 10 ositos locales distribuidos a los costados
 const letterContent = [
   { text: "Hay personas que llegan a la vida de uno de una forma tan inesperada que, cuando te das cuenta de todo lo que significan, ya es demasiado tarde para fingir que son alguien más.", bear: null, position: null },
   { text: "Tú fuiste una de esas personas.", bear: "/bear-1.gif", position: "left" },
@@ -33,7 +32,6 @@ export const BookStory = () => {
   const easing: [number, number, number, number] = [0.22, 1, 0.36, 1];
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
 
-  // Auto-scroll suave
   useEffect(() => {
     let animationFrameId: number;
 
@@ -53,7 +51,6 @@ export const BookStory = () => {
     };
   }, [isAutoScrolling]);
 
-  // Detener auto-scroll si el usuario toca o hace scroll
   useEffect(() => {
     const handleUserInteraction = () => setIsAutoScrolling(false);
     window.addEventListener('wheel', handleUserInteraction);
@@ -68,7 +65,6 @@ export const BookStory = () => {
   return (
     <section className="flex flex-col items-center justify-start w-full relative z-10 py-20">
       
-      {/* Botón flotante de Lectura Automática */}
       <div className="fixed bottom-10 right-10 z-50">
         <button
           onClick={() => setIsAutoScrolling(!isAutoScrolling)}
@@ -82,7 +78,6 @@ export const BookStory = () => {
         </button>
       </div>
 
-      {/* Título */}
       <motion.div
         initial={{ opacity: 0, y: 50, filter: "blur(12px)" }}
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -96,7 +91,6 @@ export const BookStory = () => {
         <div className="w-[1px] h-32 bg-gradient-to-b from-white/30 to-transparent mt-16" />
       </motion.div>
 
-      {/* Párrafos con tus ositos dispuestos a los costados */}
       <div className="max-w-4xl w-full px-6 flex flex-col gap-12">
         {letterContent.map((item, index) => (
           <motion.div
@@ -110,24 +104,23 @@ export const BookStory = () => {
               item.position === 'right' ? 'flex-row md:flex-row' : 'flex-col'
             } gap-8 md:gap-16`}
           >
-            {/* Osito a un costado */}
+
             {item.bear && (
               <motion.div 
                 initial={{ opacity: 0, scale: 0.8, filter: "blur(8px)" }}
                 whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                 transition={{ duration: 1.5, delay: 0.2, ease: easing }}
                 viewport={{ once: true }}
-                className="bg-white/5 p-3 rounded-[2rem] backdrop-blur-sm border border-white/10 shadow-2xl shrink-0"
+                className="shrink-0"
               >
                 <img 
                   src={item.bear} 
                   alt="Milk y Mocha" 
-                  className="w-24 h-24 md:w-32 md:h-32 object-contain"
+                  className="w-28 h-28 md:w-36 md:h-36 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
                 />
               </motion.div>
             )}
 
-            {/* Texto de la carta */}
             <div className={`max-w-2xl ${!item.bear ? 'text-center mx-auto' : 'text-left'}`}>
               <p
                 className={`font-serif leading-[2.2] tracking-[0.02em] ${
@@ -143,7 +136,6 @@ export const BookStory = () => {
         ))}
       </div>
 
-      {/* Firma y Osito final */}
       <motion.div
         initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
         whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -151,11 +143,11 @@ export const BookStory = () => {
         viewport={{ once: true, margin: "-20%" }}
         className="min-h-[80vh] flex flex-col items-center justify-center text-center w-full mt-20"
       >
-        <div className="bg-white/5 p-4 rounded-[2rem] backdrop-blur-sm border border-white/10 mb-8 shadow-2xl">
+        <div className="mb-8">
           <img 
             src="/bear-10.gif" 
             alt="Milk y Mocha final" 
-            className="w-32 h-32 object-contain"
+            className="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
           />
         </div>
 
