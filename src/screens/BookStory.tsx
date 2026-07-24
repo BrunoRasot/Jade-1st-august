@@ -64,14 +64,13 @@ export const BookStory = () => {
 
   return (
     <section className="flex flex-col items-center justify-start w-full relative z-10 py-20">
-      
-      <div className="fixed bottom-10 right-10 z-50">
+      <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4">
         <button
           onClick={() => setIsAutoScrolling(!isAutoScrolling)}
-          className={`px-6 py-3 rounded-full backdrop-blur-xl border border-white/10 shadow-lg text-xs uppercase tracking-widest transition-all duration-500 ${
+          className={`px-6 py-3 rounded-full backdrop-blur-xl border border-white/10 shadow-2xl text-xs uppercase tracking-widest transition-all duration-500 ${
             isAutoScrolling 
-              ? 'bg-white/20 text-white shadow-[0_0_15px_rgba(255,255,255,0.2)]' 
-              : 'bg-black/40 text-white/50 hover:text-white hover:bg-white/10'
+              ? 'bg-white/20 text-white shadow-[0_0_20px_rgba(255,255,255,0.3)]' 
+              : 'bg-black/60 text-white/70 hover:text-white hover:bg-black/80'
           }`}
         >
           {isAutoScrolling ? 'Pausar Lectura' : 'Lectura Automática'}
@@ -104,7 +103,6 @@ export const BookStory = () => {
               item.position === 'right' ? 'flex-row md:flex-row' : 'flex-col'
             } gap-8 md:gap-16`}
           >
-
             {item.bear && (
               <motion.div 
                 initial={{ opacity: 0, scale: 0.8, filter: "blur(8px)" }}
